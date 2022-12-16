@@ -12,33 +12,43 @@ public class SimpleCalcGUI extends JFrame{
 
     public SimpleCalcGUI() {
         btnCompute.addActionListener(e -> {
-            double number1 = Double.parseDouble(tfNumber1.getText());
-            double number2 = Double.parseDouble(tfNumber2.getText());
-            String operation = (String) cbOperations.getSelectedItem();
-            double result = 0;
-            switch (operation) {
-                case "+":
-                    result = number1 + number2;
-                    break;
-                case "-":
-                    result = number1 - number2;
-                    break;
-                case "*":
-                    result = number1 * number2;
-                    break;
-                case "/":
-                    result = number1 / number2;
-                    break;
-            }
+            try {
+                double number1 = Double.parseDouble(tfNumber1.getText());
+                double number2 = Double.parseDouble(tfNumber2.getText());
+                String operation = (String) cbOperations.getSelectedItem();
+                double result = 0;
+                switch (operation) {
+                    case "+":
+                        result = number1 + number2;
+                        break;
+                    case "-":
+                        result = number1 - number2;
+                        break;
+                    case "*":
+                        result = number1 * number2;
+                        break;
+                    case "/":
+                        result = number1 / number2;
+                        break;
+                }
 
-            lblResult.setText(String.valueOf(result));
+                lblResult.setText(String.valueOf(result));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "An error occurred: " + ex.getMessage());
+            }
         });
+
     }
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Simple Calculator");
-        frame.setContentPane(new SimpleCalcGUI().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        try {
+            JFrame frame = new JFrame("Simple Calculator");
+            frame.setContentPane(new SimpleCalcGUI().panel1);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage());
+        }
     }
+
 }
