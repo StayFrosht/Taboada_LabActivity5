@@ -20,40 +20,45 @@ public class FoodOrderGUI extends JFrame{
     private JRadioButton rb15;
 
     public FoodOrderGUI() {
-        btnOrder.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                double totalPrice = 0;
-                if (cPizza.isSelected()) {
-                    totalPrice += 100;
+            btnOrder.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        double totalPrice = 0;
+                        if (cPizza.isSelected()) {
+                            totalPrice += 100;
+                        }
+                        if (cBurger.isSelected()) {
+                            totalPrice += 80;
+                        }
+                        if (cFries.isSelected()) {
+                            totalPrice += 65;
+                        }
+                        if (cSoftDrinks.isSelected()) {
+                            totalPrice += 55;
+                        }
+                        if (cTea.isSelected()) {
+                            totalPrice += 50;
+                        }
+                        if (cSundae.isSelected()) {
+                            totalPrice += 40;
+                        }
+                        if (rb5.isSelected()) {
+                            totalPrice *= 0.95;
+                        } else if (rb10.isSelected()) {
+                            totalPrice *= 0.9;
+                        } else if (rb15.isSelected()) {
+                            totalPrice *= 0.85;
+                        }
+                        DecimalFormat df = new DecimalFormat("#.00");
+                        JOptionPane.showMessageDialog(null, "The total price is Php " + df.format(totalPrice));
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "An error occurred: " + ex.getMessage());
+                    }
                 }
-                if (cBurger.isSelected()) {
-                    totalPrice += 80;
-                }
-                if (cFries.isSelected()) {
-                    totalPrice += 65;
-                }
-                if (cSoftDrinks.isSelected()) {
-                    totalPrice += 55;
-                }
-                if (cTea.isSelected()) {
-                    totalPrice += 50;
-                }
-                if (cSundae.isSelected()) {
-                    totalPrice += 40;
-                }
-                if (rb5.isSelected()) {
-                    totalPrice *= 0.95;
-                } else if (rb10.isSelected()) {
-                    totalPrice *= 0.9;
-                } else if (rb15.isSelected()) {
-                    totalPrice *= 0.85;
-                }
-                DecimalFormat df = new DecimalFormat("#.00");
-                JOptionPane.showMessageDialog(null, "The total price is Php " + df.format(totalPrice));
-            }
-        });
-    }
+            });
+        }
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Food Ordering System");
