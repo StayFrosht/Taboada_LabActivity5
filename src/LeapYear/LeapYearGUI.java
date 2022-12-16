@@ -8,7 +8,11 @@ public class LeapYearGUI extends JFrame{
     private JButton btnCheckYear;
 
     public LeapYearGUI() {
-
+        btnCheckYear.addActionListener(e -> {
+            int year = Integer.parseInt(tfYear.getText());
+            boolean isLeapYear = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+            JOptionPane.showMessageDialog(null, "The year " + year + " is " + (isLeapYear ? "a leap year." : "not a leap year."));
+        });
     }
 
     public static void main(String[] args) {
